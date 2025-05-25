@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+  <header>
+    <nav class="flex justify-between w-11/12 mx-auto py-6  items-center ">
+
+      <div class="sm:hidden">
+        <details class="dropdown">
+          <summary class="btn btn-sm m-1">Menu</summary>
+          <ul class="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+            <li><a>Home</a></li>
+            <li><a>Shop</a></li>
+            <li><a>Contact</a></li>
+          </ul>
+        </details>
+      </div>
+      <div class="flex items-center gap-2">
+        <img class="h-5" src="images/logo.webp" alt="">
+        <p class=" sm:text-3xl font-bold">Peddy</p>
+      </div>
+      <div class="items-center hidden sm:flex">
+        <ul class="flex gap-5">
+          <li><button class="btn rounded-xl border-none">Home</button></li>
+          <li><button class="btn rounded-xl border-none">Shop</button></li>
+          <li><button class="btn rounded-xl border-none">Contact</button></li>
+        </ul>
+      </div>
+      <div>
+        <a href=""><img class="h-10" src="https://img.icons8.com/?size=100&id=H101gtpJBVoh&format=png&color=000000" alt=""></a>
+      </div>
+    </nav>
+  </header>
+  <main>
+
+    <section class="flex flex-col justify-between w-11/12 mx-auto py-6  items-center text-center">
+      <div class="w-3/4 md:w-3/5 mx-auto">
+        <p class="font-semibold text-base lg:text-2xl ">Bringing Families Together❤️</p>
+        <h1 class="my-8 font-bold text-4xl md:text-6xl lg:text-7xl">Your Path to Adoption Starts Here</h1>
+        <p class="mb-6">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
+        <button class="btn md:btn-lg text-white rounded-xl border-none hover:bg-white hover:text-[#0E7A81] bg-[#0E7A81]">View More</button>
+      </div>
+      <div>
+        <img class="max-w-[800px] w-full" src="images/pet.webp" alt="">
+      </div>
+    </section>
+
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

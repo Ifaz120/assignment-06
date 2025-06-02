@@ -21,7 +21,7 @@ const displayCategories = (item) => {
 const petSelector = (id) => {
   fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
   .then((res) => res.json())
-  .then((data) => petData(data.data))
+  .then((data) => displayData(data.data))
   .catch((error) => console.error(error))
 };
 
@@ -39,10 +39,65 @@ const loadData = () => {
   .catch((error) => console.error(error))
 };
 
+const loadDetails = async (petId) => {
+  console.log(petId);
+  const uri = `https://openapi.programming-hero.com/api/peddy/pet/${petId}`;
+  const res = await fetch(uri);
+  const data = await res.json();
+  displayDetails(data.petData);
+}
+
+const displayDetails = (fullDetails) => {
+  console.log(fullDetails);
+  const detailsContainer = document.getElementById("details-content");
+  document.getElementById("customModal").showModal();
+  detailsContainer.innerHTML = `
+  <div class="card bg-base-100">
+  <img
+    src="${fullDetails.image}"
+    alt="pet"
+    class="rounded-xl" />
+  </figure>
+  <h2 class=" my-4 font-bold text-xl">${fullDetails.pet_name}</h2>
+  <div class=" grid grid-cols-2 gap-2">
+    <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=mluT7pyF3sD3&format=png&color=000000" />Breed: ${fullDetails.breed}</p>
+    <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=GlEOr5x0aJpH&format=png&color=000000" />Birth: ${fullDetails.date_of_birth}</p>
+    <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=1665&format=png&color=000000" />Gender: ${fullDetails.gender}</p>
+    <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=7172&format=png&color=000000" />Price: ${fullDetails.price}</p>
+    <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=1665&format=png&color=000000" />Vaccinated Status: ${fullDetails.vaccinated_status}</p>
+  </div>
+  <hr class="my-4 text-slate-400">
+  <div>
+  <h3 class="font-bold text-lg">Details Information</h3>
+  <p class="text-sm">${fullDetails.pet_details}</p>
+  </div>
+
+</div>
+  `;
+}
+
 const displayData = (animal) => {
   const dataContainer = document.getElementById("cards");
+  dataContainer.innerHTML = "";
+
+  if(animal.length == 0 ){
+    dataContainer.classList.remove("grid");
+    dataContainer.innerHTML= `
+    <div class="bg-base-300 flex flex-col gap-5 justify-center items-center p-8 rounded-xl">
+    <img src ="images/error.webp" alt="no info" />
+    <h3 class="text-3xl font-bold">No Information Available</h3>
+    <p class="text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at 
+    its layout. The point of using Lorem Ipsum is that it has a.</p>
+    </div>
+    `;
+    return;
+  }
+  else{
+    dataContainer.classList.add("grid");
+  };
   animal.forEach((animals) => {
     const div = document.createElement("div");
+
     
     div.innerHTML = `
     
@@ -64,7 +119,8 @@ const displayData = (animal) => {
     <div class="card-actions">
       <button onclick = "pushImage('${animals.image}') " class="btn "><img class="h-6" src="https://img.icons8.com/?size=100&id=24816&format=png&color=000000" alt="like" /></button>
       <button class="btn rounded-lg hover:bg-[#0E7A81] hover:text-white  text-[#0E7A81] font-bold">Adopt</button>
-      <button class="btn rounded-lg hover:bg-[#0E7A81] hover:text-white  text-[#0E7A81] font-bold">Details</button>
+      <button onclick="loadDetails(${animals.petId})" class="btn rounded-lg hover:bg-[#0E7A81] hover:text-white  text-[#0E7A81] font-bold">Details</button>
+      
     </div>
   </div>
 </div>

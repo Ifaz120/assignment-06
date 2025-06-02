@@ -11,18 +11,32 @@ const displayCategories = (item) => {
     const div = document.createElement("div");
 
     div.innerHTML = `
-    <button onclick="petSelector('${items.category}')" class="btn btn-xl rounded-lg px-20"><img class="h-8" src="${items.category_icon}" alt="" /> ${items.category}</button>
+    <button id="btn-${items.category}" onclick="petSelector('${items.category}')" class="btn btn-xl py-6 px-20 category-btn "><img class="h-8 w-8"  src="${items.category_icon}" alt="" /> ${items.category}</button>
     `;
 
     categoryContainer.append(div);
   })
 };
 
+const removeActiveBtn = () => {
+  const buttons = document.getElementsByClassName("category-btn");
+  for( let btns of buttons) {
+    btns.classList.remove("bg-[#c0e5e9]","border-cyan-500" ,"bg-opacity-10", "rounded-full");
+  }
+}
+
 const petSelector = (id) => {
+  
   fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
   .then((res) => res.json())
-  .then((data) => displayData(data.data))
+  .then((data) => {
+    removeActiveBtn();
+    const activeBtn = document.getElementById(`btn-${id}`);
+    activeBtn.classList.add("bg-[#c0e5e9]","bg-opacity-10" , "border-cyan-500", "rounded-full");
+    displayData(data.data);
+  })
   .catch((error) => console.error(error))
+  
 };
 
 const petData = (kit) => {
@@ -60,7 +74,7 @@ const displayDetails = (fullDetails) => {
   </figure>
   <h2 class=" my-4 font-bold text-xl">${fullDetails.pet_name}</h2>
   <div class=" grid grid-cols-2 gap-2">
-    <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=mluT7pyF3sD3&format=png&color=000000" />Breed: ${fullDetails.breed}</p>
+    <p class = "flex gap-2 text-sm"><img text-gray class="h-5 items-center" src="https://img.icons8.com/?size=100&id=mluT7pyF3sD3&format=png&color=000000" />Breed: ${fullDetails.breed}</p>
     <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=GlEOr5x0aJpH&format=png&color=000000" />Birth: ${fullDetails.date_of_birth}</p>
     <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=1665&format=png&color=000000" />Gender: ${fullDetails.gender}</p>
     <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=7172&format=png&color=000000" />Price: ${fullDetails.price}</p>
@@ -147,4 +161,3 @@ const pushImage = (image) => {
 
 loadData();
 loadCategories();
-petSelector();

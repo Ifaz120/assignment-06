@@ -51,7 +51,7 @@
         <h1 class="my-8 font-bold text-4xl md:text-6xl lg:text-7xl">Your Path to Adoption Starts Here</h1>
         <p class="mb-6">It is a long established fact that a reader will be distracted by the readable content of a page
           when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
-        <button
+        <button id="view-more-button"
           class="btn md:btn-lg text-white rounded-xl border-none hover:bg-gray-400 hover:text-black bg-[#0E7A81] ">View
           More</button>
       </div>
@@ -64,7 +64,7 @@
 
     <section class="flex flex-col justify-between w-11/12 mx-auto py-6  items-center text-center">
       <div class="mb-8">
-        <h3 class="font-semibold text-4xl mb-6">Adopt Your Best Friend</h3>
+        <h3 id="adopt-title" class="font-semibold text-4xl mb-6">Adopt Your Best Friend</h3>
         <p>It is a long established fact that a reader will be distracted by the readable content of a <br> page when
           looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
       </div>
@@ -78,13 +78,17 @@
     </section>
     <div class="w-11/12 mx-auto flex justify-between">
       <h3 class="font-semibold text-2xl">Best Deal For you</h3>
-      <button class="btn bg-[#0E7A81] text-white hover:bg-gray-400 hover:text-black 
+      <button id="sort-btn" class="btn bg-[#0E7A81] text-white hover:bg-gray-400 hover:text-black 
       text-lg rounded-lg p-6">Sort By
         Price</button>
     </div>
 
     <section class="w-11/12 mx-auto py-6 grid grid-cols-4 gap-x-5">
+      <div id="card-loading" class="hidden justify-center items-center py-10 col-span-3 flex">
+        <span class="loading loading-bars loading-xl"></span>
+      </div>
       <div id="cards" class="col-span-3 grid grid-cols-3 gap-5">
+        
 
       </div>
       <div id="storeData" class="col-span-1 gap-x-2 card bg-base-100 shadow-sm row-span-5">

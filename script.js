@@ -1,3 +1,22 @@
+let allPets = [];
+// formation of data to avoid the parts where the info wont be available 
+const formatData = (data) => {
+  return data === null || data === undefined || data === "" ? "No Information" : data ;
+};
+
+document.getElementById("sort-btn").addEventListener("click", function(){
+
+  const sortedPets = [...allPets].sort((a,b) => {
+    return parseFloat(b.price) - parseFloat(a.price);
+  });
+  displayData(sortedPets);
+});
+
+document.getElementById("view-more-button").addEventListener("click", function () {
+  const target = document.getElementById("adopt-title");
+  target.scrollIntoView({behavior : "smooth"})
+});
+
 const loadCategories = () => {
   fetch("https://openapi.programming-hero.com/api/peddy/categories")
   .then((res) => res.json())
@@ -23,17 +42,29 @@ const removeActiveBtn = () => {
   for( let btns of buttons) {
     btns.classList.remove("bg-[#c0e5e9]","border-cyan-500" ,"bg-opacity-10", "rounded-full");
   }
-}
+};
 
 const petSelector = (id) => {
-  
+  const spinnerContainer = document.getElementById("card-loading");
+  const dataContainer = document.getElementById("cards");
+  const box = document.getElementById("storeData");
+      spinnerContainer.classList.remove("hidden");
+      dataContainer.classList.add("hidden");
+      box.classList.add("hidden");
+
   fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
   .then((res) => res.json())
   .then((data) => {
     removeActiveBtn();
     const activeBtn = document.getElementById(`btn-${id}`);
     activeBtn.classList.add("bg-[#c0e5e9]","bg-opacity-10" , "border-cyan-500", "rounded-full");
-    displayData(data.data);
+    allPets = data.data;
+    setTimeout(()=> {
+      spinnerContainer.classList.add("hidden");
+      dataContainer.classList.remove("hidden");
+      box.classList.remove("hidden");
+    },2000);
+    displayData(allPets);
   })
   .catch((error) => console.error(error))
   
@@ -43,13 +74,16 @@ const petData = (kit) => {
   kit.forEach((kits) => {
     console.log(kits)
   })
-}
+};
 
 
 const loadData = () => {
   fetch("https://openapi.programming-hero.com/api/peddy/pets")
   .then((res) => res.json())
-  .then((data) => displayData(data.pets))
+  .then((data) => {
+    allPets = data.pets;
+    displayData(allPets)
+  })
   .catch((error) => console.error(error))
 };
 
@@ -59,7 +93,7 @@ const loadDetails = async (petId) => {
   const res = await fetch(uri);
   const data = await res.json();
   displayDetails(data.petData);
-}
+};
 
 const displayDetails = (fullDetails) => {
   console.log(fullDetails);
@@ -72,18 +106,18 @@ const displayDetails = (fullDetails) => {
     alt="pet"
     class="rounded-xl" />
   </figure>
-  <h2 class=" my-4 font-bold text-xl">${fullDetails.pet_name}</h2>
+  <h2 class=" my-4 font-bold text-xl">${formatData(fullDetails.pet_name)}</h2>
   <div class=" grid grid-cols-2 gap-2">
-    <p class = "flex gap-2 text-sm"><img text-gray class="h-5 items-center" src="https://img.icons8.com/?size=100&id=mluT7pyF3sD3&format=png&color=000000" />Breed: ${fullDetails.breed}</p>
-    <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=GlEOr5x0aJpH&format=png&color=000000" />Birth: ${fullDetails.date_of_birth}</p>
-    <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=1665&format=png&color=000000" />Gender: ${fullDetails.gender}</p>
-    <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=7172&format=png&color=000000" />Price: ${fullDetails.price}</p>
-    <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=1665&format=png&color=000000" />Vaccinated Status: ${fullDetails.vaccinated_status}</p>
+    <p class = "flex gap-2 text-sm"><img text-gray class="h-5 items-center" src="https://img.icons8.com/?size=100&id=mluT7pyF3sD3&format=png&color=000000" />Breed: ${formatData(fullDetails.breed)}</p>
+    <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=GlEOr5x0aJpH&format=png&color=000000" />Birth: ${formatData(fullDetails.date_of_birth)}</p>
+    <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=1665&format=png&color=000000" />Gender: ${formatData(fullDetails.gender)}</p>
+    <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=7172&format=png&color=000000" />Price: ${formatData(fullDetails.price)}</p>
+    <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=1665&format=png&color=000000" />Vaccinated Status: ${formatData(fullDetails.vaccinated_status)}</p>
   </div>
   <hr class="my-4 text-slate-400">
   <div>
   <h3 class="font-bold text-lg">Details Information</h3>
-  <p class="text-sm">${fullDetails.pet_details}</p>
+  <p class="text-sm">${formatData(fullDetails.pet_details)}</p>
   </div>
 
 </div>
@@ -123,11 +157,11 @@ const displayData = (animal) => {
       class="rounded-xl w-full h-[200px] object-cover" />
   </figure>
   <div class="card-body">
-    <h2 class="card-title">${animals.pet_name}</h2>
-    <p class = "flex gap-2"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=mluT7pyF3sD3&format=png&color=000000" />Breed: ${animals.breed}</p>
-    <p class = "flex gap-2"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=GlEOr5x0aJpH&format=png&color=000000" />Birth: ${animals.date_of_birth}</p>
-    <p class = "flex gap-2"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=1665&format=png&color=000000" />Gender: ${animals.gender}</p>
-    <p class = "flex gap-2"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=7172&format=png&color=000000" />Price: ${animals.price}</p>
+    <h2 class="card-title">${formatData(animals.pet_name)}</h2>
+    <p class = "flex gap-2"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=mluT7pyF3sD3&format=png&color=000000" />Breed: ${formatData(animals.breed)}</p>
+    <p class = "flex gap-2"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=GlEOr5x0aJpH&format=png&color=000000" />Birth: ${formatData(animals.date_of_birth)}</p>
+    <p class = "flex gap-2"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=1665&format=png&color=000000" />Gender: ${formatData(animals.gender)}</p>
+    <p class = "flex gap-2"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=7172&format=png&color=000000" />Price: ${formatData(animals.price)}</p>
     
 
     <div class="card-actions">

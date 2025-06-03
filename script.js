@@ -95,6 +95,27 @@ const loadDetails = async (petId) => {
   displayDetails(data.petData);
 };
 
+const congratsDetails = (newCongrats) => {
+  const congratsContainer = document.getElementById("congrats-content");
+  document.getElementById("congratsModal").showModal();
+  ;
+  let seconds = 4;
+  const changer = document.getElementById("countdown");
+  
+  const interval = setInterval(() =>{
+   seconds--;
+   changer.textContent = seconds;
+  
+   if(seconds === 1){
+     clearInterval(interval);
+     document.getElementById("congratsModal").close();
+    }
+    
+  },1000 );
+  changer.textContent = 3;
+}
+
+
 const displayDetails = (fullDetails) => {
   console.log(fullDetails);
   const detailsContainer = document.getElementById("details-content");
@@ -166,7 +187,7 @@ const displayData = (animal) => {
 
     <div class="card-actions">
       <button onclick = "pushImage('${animals.image}') " class="btn "><img class="h-6" src="https://img.icons8.com/?size=100&id=24816&format=png&color=000000" alt="like" /></button>
-      <button class="btn rounded-lg hover:bg-[#0E7A81] hover:text-white  text-[#0E7A81] font-bold">Adopt</button>
+      <button onclick="congratsDetails()" class="btn rounded-lg hover:bg-[#0E7A81] hover:text-white  text-[#0E7A81] font-bold">Adopt</button>
       <button onclick="loadDetails(${animals.petId})" class="btn rounded-lg hover:bg-[#0E7A81] hover:text-white  text-[#0E7A81] font-bold">Details</button>
       
     </div>

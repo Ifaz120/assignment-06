@@ -100,7 +100,6 @@
 
 
 
-
   <footer class="  text-white bg-[#131313]">
     <div class="flex justify-between w-11/12 mx-auto py-20 text-neutral-content">
       <div class="gap-2 flex flex-col">
@@ -159,15 +158,16 @@
 </dialog>
 
 <!-- Open the modal using ID.showModal() method -->
-<button class="btn hidden" onclick="my_modal_6.showModal()">open modal</button>
-<dialog id="my_modal_6" class="modal modal-bottom sm:modal-middle">
+<button id="congratsModalData" class="btn hidden" onclick="my_modal_6.showModal()">open modal</button>
+<dialog id="congratsModal" class="modal modal-bottom sm:modal-middle">
   <div class="modal-box">
-    
-    <div class="modal-action">
-      <form method="dialog">
-        <!-- if there is a button in form, it will close the modal -->
-        <button class="btn">Close</button>
-      </form>
+    <div id="congrats-content">
+      <div class="flex flex-col mx-auto justify-center items-center gap-y-3">
+        <h3 class="flex text-3xl font-bold">Congrats <img class="h-10" src="https://img.icons8.com/?size=100&id=PEmFcgjhBgKF&format=png&color=000000" alt=""> </h3>
+        <p>Adoption Process starts for your pet in </p>
+        <p id="countdown" class="text-4xl font-bold "></p>
+       </div>
+       
     </div>
   </div>
 </dialog>

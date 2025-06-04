@@ -17,6 +17,8 @@ document.getElementById("view-more-button").addEventListener("click", function (
   target.scrollIntoView({behavior : "smooth"})
 });
 
+
+
 const loadCategories = () => {
   fetch("https://openapi.programming-hero.com/api/peddy/categories")
   .then((res) => res.json())
@@ -95,7 +97,7 @@ const loadDetails = async (petId) => {
   displayDetails(data.petData);
 };
 
-const congratsDetails = (newCongrats) => {
+const congratsDetails = (btn) => {
   const congratsContainer = document.getElementById("congrats-content");
   document.getElementById("congratsModal").showModal();
   ;
@@ -113,6 +115,10 @@ const congratsDetails = (newCongrats) => {
     
   },1000 );
   changer.textContent = 3;
+  const openBtn = document.getElementById("clicked-button");
+  
+  btn.classList.add("btn-disabled");
+  btn.textContent ="Adopted";
 }
 
 
@@ -187,7 +193,7 @@ const displayData = (animal) => {
 
     <div class="card-actions">
       <button onclick = "pushImage('${animals.image}') " class="btn "><img class="h-6" src="https://img.icons8.com/?size=100&id=24816&format=png&color=000000" alt="like" /></button>
-      <button onclick="congratsDetails()" class="btn rounded-lg hover:bg-[#0E7A81] hover:text-white  text-[#0E7A81] font-bold">Adopt</button>
+      <button onclick="congratsDetails(this)" class="btn rounded-lg hover:bg-[#0E7A81] hover:text-white  text-[#0E7A81] font-bold">Adopt</button>
       <button onclick="loadDetails(${animals.petId})" class="btn rounded-lg hover:bg-[#0E7A81] hover:text-white  text-[#0E7A81] font-bold">Details</button>
       
     </div>

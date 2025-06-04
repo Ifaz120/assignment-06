@@ -11,7 +11,7 @@ This repository contains the files for **Pet Adoption site - Peddy**.
   4) Contacting options
   5) Good user interference 
 - And some of the ES6 features that have been used here are :
-  1. let
+1. let
 2. const
 3. Arrow functions (=>)
 4. Template literals (`${}`)

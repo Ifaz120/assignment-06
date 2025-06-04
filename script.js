@@ -161,8 +161,7 @@ const displayData = (animal) => {
     <div class="bg-base-300 flex flex-col gap-5 justify-center items-center p-8 rounded-xl">
     <img src ="images/error.webp" alt="no info" />
     <h3 class="text-xl md:text-3xl font-bold">No Information Available</h3>
-    <p class="text-center font-medium text-gray-700">It is a long established fact that a reader will be distracted by the readable content of a page when looking at 
-    its layout. The point of using Lorem Ipsum is that it has a.</p>
+    <p class="text-center font-medium text-gray-700">We are sorry , we do not have any birds in our collections currently. But we will update this page as soon as we restock our Bird pet's collection</p>
     </div>
     `;
     return;

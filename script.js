@@ -32,7 +32,7 @@ const displayCategories = (item) => {
     const div = document.createElement("div");
 
     div.innerHTML = `
-    <button id="btn-${items.category}" onclick="petSelector('${items.category}')" class="btn btn-xl py-6 px-20 category-btn "><img class="h-8 w-8"  src="${items.category_icon}" alt="" /> ${items.category}</button>
+    <button id="btn-${items.category}" onclick="petSelector('${items.category}')" class="btn lg:btn-xl py-6 lg:px-20 category-btn "><img class="h-8 w-8"  src="${items.category_icon}" alt="" /> ${items.category}</button>
     `;
 
     categoryContainer.append(div);
@@ -135,16 +135,16 @@ const displayDetails = (fullDetails) => {
   </figure>
   <h2 class=" my-4 font-bold text-xl">${formatData(fullDetails.pet_name)}</h2>
   <div class=" grid grid-cols-2 gap-2">
-    <p class = "flex gap-2 text-sm"><img text-gray class="h-5 items-center" src="https://img.icons8.com/?size=100&id=mluT7pyF3sD3&format=png&color=000000" />Breed: ${formatData(fullDetails.breed)}</p>
-    <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=GlEOr5x0aJpH&format=png&color=000000" />Birth: ${formatData(fullDetails.date_of_birth)}</p>
-    <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=1665&format=png&color=000000" />Gender: ${formatData(fullDetails.gender)}</p>
-    <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=7172&format=png&color=000000" />Price: ${formatData(fullDetails.price)}</p>
-    <p class = "flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=1665&format=png&color=000000" />Vaccinated Status: ${formatData(fullDetails.vaccinated_status)}</p>
+    <p class = "font-medium text-gray-700 flex gap-2 text-sm"><img text-gray class="h-5 items-center" src="https://img.icons8.com/?size=100&id=mluT7pyF3sD3&format=png&color=000000" />Breed: ${formatData(fullDetails.breed)}</p>
+    <p class = "font-medium text-gray-700 flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=GlEOr5x0aJpH&format=png&color=000000" />Birth: ${formatData(fullDetails.date_of_birth)}</p>
+    <p class = "font-medium text-gray-700 flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=1665&format=png&color=000000" />Gender: ${formatData(fullDetails.gender)}</p>
+    <p class = "font-medium text-gray-700 flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=7172&format=png&color=000000" />Price: ${formatData(fullDetails.price)}</p>
+    <p class = "font-medium text-gray-700 flex gap-2 text-sm"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=1665&format=png&color=000000" />Vaccinated Status: ${formatData(fullDetails.vaccinated_status)}</p>
   </div>
   <hr class="my-4 text-slate-400">
   <div>
   <h3 class="font-bold text-lg">Details Information</h3>
-  <p class="text-sm">${formatData(fullDetails.pet_details)}</p>
+  <p class="text-sm font-medium text-gray-700">${formatData(fullDetails.pet_details)}</p>
   </div>
 
 </div>
@@ -160,8 +160,8 @@ const displayData = (animal) => {
     dataContainer.innerHTML= `
     <div class="bg-base-300 flex flex-col gap-5 justify-center items-center p-8 rounded-xl">
     <img src ="images/error.webp" alt="no info" />
-    <h3 class="text-3xl font-bold">No Information Available</h3>
-    <p class="text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at 
+    <h3 class="text-xl md:text-3xl font-bold">No Information Available</h3>
+    <p class="text-center font-medium text-gray-700">It is a long established fact that a reader will be distracted by the readable content of a page when looking at 
     its layout. The point of using Lorem Ipsum is that it has a.</p>
     </div>
     `;
@@ -185,16 +185,16 @@ const displayData = (animal) => {
   </figure>
   <div class="card-body">
     <h2 class="card-title">${formatData(animals.pet_name)}</h2>
-    <p class = "flex gap-2"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=mluT7pyF3sD3&format=png&color=000000" />Breed: ${formatData(animals.breed)}</p>
-    <p class = "flex gap-2"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=GlEOr5x0aJpH&format=png&color=000000" />Birth: ${formatData(animals.date_of_birth)}</p>
-    <p class = "flex gap-2"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=1665&format=png&color=000000" />Gender: ${formatData(animals.gender)}</p>
-    <p class = "flex gap-2"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=7172&format=png&color=000000" />Price: ${formatData(animals.price)}</p>
+    <p class = "flex gap-2 font-medium text-gray-700"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=mluT7pyF3sD3&format=png&color=000000" />Breed: ${formatData(animals.breed)}</p>
+    <p class = "flex gap-2 font-medium text-gray-700"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=GlEOr5x0aJpH&format=png&color=000000" />Birth: ${formatData(animals.date_of_birth)}</p>
+    <p class = "flex gap-2 font-medium text-gray-700"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=1665&format=png&color=000000" />Gender: ${formatData(animals.gender)}</p>
+    <p class = "flex gap-2 font-medium text-gray-700"><img class="h-5 items-center" src="https://img.icons8.com/?size=100&id=7172&format=png&color=000000" />Price: ${formatData(animals.price)}</p>
     
 
     <div class="card-actions">
-      <button onclick = "pushImage('${animals.image}') " class="btn "><img class="h-6" src="https://img.icons8.com/?size=100&id=24816&format=png&color=000000" alt="like" /></button>
-      <button onclick="congratsDetails(this)" class="btn rounded-lg hover:bg-[#0E7A81] hover:text-white  text-[#0E7A81] font-bold">Adopt</button>
-      <button onclick="loadDetails(${animals.petId})" class="btn rounded-lg hover:bg-[#0E7A81] hover:text-white  text-[#0E7A81] font-bold">Details</button>
+      <button onclick = "pushImage('${animals.image}') " class="btn btn-sm lg:btn-md "><img class="h-6" src="https://img.icons8.com/?size=100&id=24816&format=png&color=000000" alt="like" /></button>
+      <button onclick="congratsDetails(this)" class="btn btn-sm lg:btn-md rounded-lg hover:bg-[#0E7A81] hover:text-white  text-[#0E7A81] font-bold">Adopt</button>
+      <button onclick="loadDetails(${animals.petId})" class="btn-sm lg:btn-md btn rounded-lg hover:bg-[#0E7A81] hover:text-white  text-[#0E7A81] font-bold">Details</button>
       
     </div>
   </div>
